@@ -1,3 +1,7 @@
+# Project dao 
+# this data layer connects to a database
+# Author: Michael Allen
+
 import mysql.connector
 import dbconfig as cfg
 class ProjectDAO:
@@ -62,5 +66,39 @@ class ProjectDAO:
             currentkey = currentkey + 1 
         return project
 
+    def delete(self, id):
+        cursor = self.getcursor()
+        sql="delete from project where id = %s"
+        values = (id,)
+
+        cursor.execute(sql, values)
+
+        self.connection.commit()
+        self.closeAll()
+        
+        print("Delete done. Row " +str(id)+ " was deleted successfully.")
+        return
+
+    def create(self, project):
+        cursor = self.getcursor()
+        sql="insert into project (name,staff) values (%s,%s)"
+        values = (project.get("name"), project.get("staff"))
+        cursor.execute(sql, values)
+
+        self.connection.commit()
+        newid = cursor.lastrowid
+        project["id"] = newid
+        self.closeAll()
+        return project
+    
+    def update(self,id,project):
+        cursor = self.getcursor()
+        sql="update project set name=%s,staff=%s where id = %s"
+        print(f"update project {project}")
+        values = (project.get("name"),project.get("staff"),id)
+        print(values)
+        cursor.execute(sql, values)
+        self.connection.commit()
+        self.closeAll()
         
 projectDAO = ProjectDAO()
