@@ -58,7 +58,7 @@ class ProjectDAO:
         return returnvalue
 
     def convertToDictionary(self, resultLine):
-        attkeys=['id','name','staff']
+        attkeys=['id','name','staff','residents']
         project = {}
         currentkey = 0
         for attrib in resultLine:
@@ -81,8 +81,8 @@ class ProjectDAO:
 
     def create(self, project):
         cursor = self.getcursor()
-        sql="insert into project (name,staff) values (%s,%s)"
-        values = (project.get("name"), project.get("staff"))
+        sql="insert into project (name,staff,residents) values (%s,%s,%s)"
+        values = (project.get("name"), project.get("staff"), project.get("residents"))
         cursor.execute(sql, values)
 
         self.connection.commit()
@@ -93,9 +93,9 @@ class ProjectDAO:
     
     def update(self,id,project):
         cursor = self.getcursor()
-        sql="update project set name=%s,staff=%s where id = %s"
+        sql="update project set name=%s,staff=%s,residents=%s where id = %s"
         print(f"update project {project}")
-        values = (project.get("name"),project.get("staff"),id)
+        values = (project.get("name"),project.get("staff"),project.get("residents"),id)
         print(values)
         cursor.execute(sql, values)
         self.connection.commit()

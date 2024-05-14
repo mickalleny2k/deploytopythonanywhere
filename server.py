@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, abort
 #from projectDAOskeleton import projectDAO
 #import projectDAO
 from projectDAO import projectDAO
-#import pyautogui
+import pyautogui
 #import deleteRow
 
 app = Flask(__name__, static_url_path='', static_folder='.')
@@ -13,7 +13,7 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 
 @app.route('/')
 def index():
-        return "Hello World ! Web Services and Applications Project"
+        return "Web Services and Applications Project"
 
 # find by id
 # curl http://127.0.0.1:5000/project/1
@@ -40,9 +40,10 @@ def create():
         "id": request.json['id'],
         "name": request.json['name'],
         "staff": request.json['staff'],
+        "residents": request.json['residents'],
     }
     addedproject = projectDAO.create(project)
-    #pyautogui.hotkey('f5') #Simulates F5 key press = page refresh
+    pyautogui.hotkey('f5') #Simulates F5 key press = page refresh
     return jsonify(addedproject)
 
 #curl  -i -H "Content-Type:application/json" -X PUT -d "{\"id\":5,\"name\":\"High Support Needs\",\"staff\":111}" http://127.0.0.1:5000/project/5
@@ -66,8 +67,10 @@ def update(id):
         foundProject['name'] = reqJson['name']
     if 'staff' in reqJson:
         foundProject['staff'] = reqJson['staff']
+    if 'residents' in reqJson:
+        foundProject['residents'] = reqJson['residents']
     projectDAO.update(id,foundProject)
-    #pyautogui.hotkey('f5') #Simulates F5 key press = page refresh
+    pyautogui.hotkey('f5') #Simulates F5 key press = page refresh
     return jsonify(foundProject)    
 
 @app.route('/project/<int:id>' , methods=['DELETE'])
