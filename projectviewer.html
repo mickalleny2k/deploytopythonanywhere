@@ -1,0 +1,242 @@
+<html><head>
+    <html><head>
+        <title>CORK SIMON COMMUNITY</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>CORK SIMON COMMUNITY</h1>
+        <div> <button id="showCreateButton" onclick="showCreate()">Create Project</button></div>
+        <table class="table" id="projectTable">
+            <tbody><tr>
+                <th>id</th>
+                <th>Project Name</th>
+                <th>Number of Staff</th>
+                <th>Number of Residents</th>
+                <th> UPDATE </th>
+                <th> DELETE </th>
+            </tr>
+    
+        </tbody></table>
+        
+        <div id='createUpdateForm' style="display: none">
+            <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Project</h2>
+            <input type="hidden" name="id"/>
+            Project Name <input type="text" name="name" /><br/>
+            Number of Staff <input type="number" name="staff"/> <br/>
+            Number of Residents <input type="number" name="residents"/> <br/>
+            <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+            <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+    </div>
+    
+    <script>
+        function showCreate(){
+            document.getElementById('showCreateButton').style.display="none"
+            document.getElementById('projectTable').style.display="none"
+            document.getElementById('createUpdateForm').style.display="block"
+    
+            document.getElementById('createLabel').style.display="inline"
+            document.getElementById('updateLabel').style.display="none"
+    
+            document.getElementById('doCreateButton').style.display="block"
+            document.getElementById('doUpdateButton').style.display="none"
+        
+            }
+            function showViewAll(){
+                document.getElementById('showCreateButton').style.display="block"
+                document.getElementById('projectTable').style.display="block"
+                document.getElementById('createUpdateForm').style.display="none"
+            }
+            function showUpdate(buttonElement){
+                document.getElementById('showCreateButton').style.display="none"
+                document.getElementById('projectTable').style.display="none"
+                document.getElementById('createUpdateForm').style.display="block"
+        
+                document.getElementById('createLabel').style.display="none"
+                document.getElementById('updateLabel').style.display="inline"
+        
+                document.getElementById('doCreateButton').style.display="none"
+                document.getElementById('doUpdateButton').style.display="block"
+        
+        
+                var rowElement = buttonElement.parentNode.parentNode
+                // these is a way of finding the closest <tr> which would safer, closest()
+                
+                var project = getProjectFromRow(rowElement)
+                populateFormWithProject(project)
+            }
+            function doCreate(){
+                var form = document.getElementById('createUpdateForm')
+        
+                var project = {}
+               
+                project.id = form.querySelector('input[name="id"]').value
+                project.name = form.querySelector('input[name="name"]').value
+                project.staff = form.querySelector('input[name="staff"]').value
+                project.residents = form.querySelector('input[name="residents"]').value
+                console.log(JSON.stringify(project))
+                createProjectAjax(project)
+                
+                
+            }
+            function doUpdate(){
+                var project = getProjectFromForm();
+                var rowElement = document.getElementById(project.id);
+                updateProjectAjax(project);
+                setProjectInRow(rowElement,project);
+               
+                clearForm();
+                showViewAll();
+            }
+            function doDelete(r){
+                var tableElement = document.getElementById('projectTable');
+                var rowElement = r.parentNode.parentNode;
+                var index = rowElement.rowIndex;
+                deleteProjectAjax(rowElement.getAttribute("id"));
+                tableElement.deleteRow(index);
+            }
+    function addProjectToTable(project){
+        var tableElement = document.getElementById('projectTable')
+        var rowElement = tableElement.insertRow(-1)
+        rowElement.setAttribute('id',project.id)
+        var cell1 = rowElement.insertCell(0);
+        cell1.innerHTML = project.id
+        var cell2 = rowElement.insertCell(1);
+        cell2.innerHTML = project.name
+        var cell3 = rowElement.insertCell(2);
+        cell3.innerHTML = project.staff
+        var cell4 = rowElement.insertCell(3);
+        cell4.innerHTML = project.residents
+        var cell5 = rowElement.insertCell(4);
+        cell5.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
+        var cell6 = rowElement.insertCell(5);
+        cell6.innerHTML = '<button onclick=doDelete(this)>Delete</button>'
+    
+    }
+        
+    function clearForm(){
+        var form = document.getElementById('createUpdateForm')
+    
+        form.querySelector('input[name="id"]').value=''
+        form.querySelector('input[name="name"]').value=''
+        form.querySelector('input[name="staff"]').value=''
+        form.querySelector('input[name="residents"]').value=''
+    }
+    function getProjectFromRow(rowElement){
+        var row ={}
+        project.id  = rowElement.getAttribute('id')
+        project.name = rowElement.cells[1].firstChild.textContent
+        //project.staff = rowElement.cells[2].firstChild.textContent
+        project.staff = parseInt(rowElement.cells[2].firstChild.textContent,10)
+        project.residents = parseInt(rowElement.cells[3].firstChild.textContent,10)
+        return project
+    }
+    function setProjectInRow(rowElement, project){
+        rowElement.cells[0].firstChild.textContent= project.id  
+        rowElement.cells[1].firstChild.textContent= project.name 
+        rowElement.cells[2].firstChild.textContent= project.staff
+        rowElement.cells[3].firstChild.textContent= project.residents
+    }
+    function populateFormWithProject(project){
+        var form = document.getElementById('createUpdateForm')
+        form.querySelector('input[name="id"]').disabled = true
+    
+        form.querySelector('input[name="id"]').value  = project.id
+        form.querySelector('input[name="name"]').value= project.name
+        form.querySelector('input[name="staff"]').value= project.staff
+        form.querySelector('input[name="residents"]').value= project.residents
+        return project
+    }
+    function getProjectFromForm(){
+        var form = document.getElementById('createUpdateForm')
+        var project = {}
+        project.id = form.querySelector('input[name="id"]').value
+        project.name = form.querySelector('input[name="name"]').value
+        project.staff = parseInt(form.querySelector('input[name="staff"]').value,10)
+        project.residents = parseInt(form.querySelector('input[name="residents"]').value,10)
+        console.log(JSON.stringify(project))
+        return project
+    }
+    function getAllAjax(){
+        $.ajax({
+            "url": "/project",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                for (project of result){
+                    addProjectToTable(project);
+                }
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    
+    }
+    function createProjectAjax(project){
+        //var project = {"id":1, "name":"E & T","staff":9}
+        console.log(JSON.stringify(project));
+        $.ajax({
+            "url": "/project",
+            "method":"POST",
+            "data":JSON.stringify(project),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                project.id = result.id
+                addProjectToTable(project)
+                clearForm()
+                showViewAll()
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function updateProjectAjax(project){
+        //var project = {"id":1, "name":"Education and Training","staff":33}
+        console.log(JSON.stringify(project));
+        $.ajax({
+            "url": "/project/"+encodeURI(project.id),
+            "method":"PUT",
+            "data":JSON.stringify(project),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                // console.log(result);
+                    
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function deleteProjectAjax(id){
+                
+        //console.log(JSON.stringify('deleting '+id));
+        $.ajax({
+            "url": "/project/"+encodeURI(id),
+            "method":"DELETE",
+            "data":"",
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                    
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    getAllAjax();
+          
+        
+            
+    </script>
+    </html>

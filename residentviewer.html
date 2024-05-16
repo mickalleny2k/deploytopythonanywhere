@@ -1,0 +1,249 @@
+<html><head>
+    <title>CORK SIMON COMMUNITY</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    <h1>CORK SIMON RESIDENTS</h1>
+    <div> <button id="showCreateButton" onclick="showCreate()">Create Resident</button></div>
+    <table class="table" id="residentTable">
+        <tbody><tr>
+            <th>id</th>
+            <th>Resident Name</th>
+            <th>Age of Resident</th>
+            <th>PPS Number</th>
+            <th> UPDATE </th>
+            <th> DELETE </th>
+        </tr>
+    </tbody></table>
+    
+    <div id='createUpdateForm' style="display: none">
+        <h2><span id="createLabel">Create</span> <span id="updateLabel">Update</span> Resident</h2>
+        <input type="hidden" name="id"/>
+        Resident Name <input type="text" name="name" /><br/>
+        Age of Resident <input type="number" name="age"/> <br/>
+        PPS Number <input type="text" name="ppsn"/> <br/>
+        <span><button id="doCreateButton" onclick="doCreateRes()">Create Resident</button></span>
+        <span><button id="doUpdateButton" onclick="doUpdateRes()">Update Resident</button></span>
+</div>
+</body>
+<script>
+
+        function showCreate(){
+            document.getElementById('showCreateButton').style.display="none"
+            document.getElementById('residentTable').style.display="none"
+            document.getElementById('createUpdateForm').style.display="block"
+    
+            document.getElementById('createLabel').style.display="inline"
+            document.getElementById('updateLabel').style.display="none"
+    
+            document.getElementById('doCreateButton').style.display="block"
+            document.getElementById('doUpdateButton').style.display="none"
+        
+            }
+        function showViewAllRes(){
+            document.getElementById('showCreateButton').style.display="block"
+            document.getElementById('residentTable').style.display="block"
+            document.getElementById('createUpdateForm').style.display="none"
+            }
+
+        function showUpdateRes(buttonElement){
+            document.getElementById('showCreateButton').style.display="none"
+            document.getElementById('residentTable').style.display="none"
+            document.getElementById('createUpdateForm').style.display="block"
+    
+            document.getElementById('createLabel').style.display="none"
+            document.getElementById('updateLabel').style.display="inline"
+    
+            document.getElementById('doCreateButton').style.display="none"
+            document.getElementById('doUpdateButton').style.display="block"
+    
+    
+            var rowElement = buttonElement.parentNode.parentNode
+            // these is a way of finding the closest <tr> which would safer, closest()
+            
+            var resident = getResidentFromRow(rowElement)
+            populateFormWithResident(resident)
+        }
+
+        function doCreateRes(){
+                var form = document.getElementById('createUpdateForm')
+        
+                var resident = {}
+               
+                resident.id = form.querySelector('input[name="id"]').value
+                resident.name = form.querySelector('input[name="name"]').value
+                resident.age = form.querySelector('input[name="age"]').value
+                resident.ppsn = form.querySelector('input[name="ppsn"]').value
+                console.log(JSON.stringify(resident))
+                createResidentAjax(resident)
+            }
+
+            function doUpdateRes(){
+                var resident = getResidentFromForm();
+                var rowElement = document.getElementById(resident.id);
+                updateResidentAjax(resident);
+                setResidentInRow(rowElement,resident);
+               
+                clearResForm();
+                showViewAllRes();
+            }
+
+            function doDeleteRes(r){
+                var tableElement = document.getElementById('residentTable');
+                var rowElement = r.parentNode.parentNode;
+                var index = rowElement.rowIndex;
+                deleteResidentAjax(rowElement.getAttribute("id"));
+                tableElement.deleteRow(index);
+            }
+
+        function addResidentToTable(resident){
+            var tableElement = document.getElementById('residentTable')
+            var rowElement = tableElement.insertRow(-1)
+            rowElement.setAttribute('id',resident.id)
+            var cell1 = rowElement.insertCell(0);
+            cell1.innerHTML = resident.id
+            var cell2 = rowElement.insertCell(1);
+            cell2.innerHTML = resident.name
+            var cell3 = rowElement.insertCell(2);
+            cell3.innerHTML = resident.age
+            var cell4 = rowElement.insertCell(3);
+            cell4.innerHTML = resident.ppsn
+            var cell5 = rowElement.insertCell(4);
+            cell5.innerHTML = '<button onclick="showUpdateRes(this)">Update</button>'
+            var cell6 = rowElement.insertCell(5);
+            cell6.innerHTML = '<button onclick=doDeleteRes(this)>Delete</button>'    
+        } 
+        
+        function clearResForm(){
+            var form = document.getElementById('createUpdateForm')
+        
+            form.querySelector('input[name="id"]').value=''
+            form.querySelector('input[name="name"]').value=''
+            form.querySelector('input[name="age"]').value=''
+            form.querySelector('input[name="ppsn"]').value=''
+    }
+
+    function getResidentFromRow(rowElement){
+        var row ={}
+        resident.id  = rowElement.getAttribute('id')
+        resident.name = rowElement.cells[1].firstChild.textContent
+        //project.staff = rowElement.cells[2].firstChild.textContent
+        resident.age = parseInt(rowElement.cells[2].firstChild.textContent,10)
+        resident.ppsn = rowElement.cells[3].firstChild.textContent
+        return resident
+    }
+
+    function setResidentInRow(rowElement, resident){
+        rowElement.cells[0].firstChild.textContent= resident.id  
+        rowElement.cells[1].firstChild.textContent= resident.name 
+        rowElement.cells[2].firstChild.textContent= resident.age
+        rowElement.cells[3].firstChild.textContent= resident.ppsn
+    }
+       
+    function populateFormWithResident(resident){
+        var form = document.getElementById('createUpdateForm')
+        form.querySelector('input[name="id"]').disabled = true
+    
+        form.querySelector('input[name="id"]').value = resident.id
+        form.querySelector('input[name="name"]').value = resident.name
+        form.querySelector('input[name="age"]').value = resident.age
+        form.querySelector('input[name="ppsn"]').value = resident.ppsn
+        return resident
+    }
+
+    function getResidentFromForm(){
+        var form = document.getElementById('createUpdateForm')
+        var resident = {}
+        resident.id = form.querySelector('input[name="id"]').value
+        resident.name = form.querySelector('input[name="name"]').value
+        resident.age = parseInt(form.querySelector('input[name="age"]').value,10)
+        resident.ppsn = form.querySelector('input[name="ppsn"]').value
+        console.log(JSON.stringify(resident))
+        return resident
+    }
+
+    function getAllResAjax(){
+        $.ajax({
+            "url": "/resident",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                for (resident of result){
+                    addResidentToTable(resident);
+                }
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    
+    }
+
+    function createResidentAjax(resident){
+        //var project = {"id":1, "name":"E & T","staff":9}
+        console.log(JSON.stringify(resident));
+        $.ajax({
+            "url": "/resident",
+            "method":"POST",
+            "data":JSON.stringify(resident),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                resident.id = result.id
+                addResidentToTable(resident)
+                clearResForm()
+                showViewAllRes()
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+
+    function updateResidentAjax(resident){
+        //var project = {"id":1, "name":"Education and Training","staff":33}
+        console.log(JSON.stringify(resident));
+        $.ajax({
+            "url": "/resident/"+encodeURI(resident.id),
+            "method":"PUT",
+            "data":JSON.stringify(resident),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                // console.log(result);
+                    
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+
+    function deleteResidentAjax(id){
+                
+                //console.log(JSON.stringify('deleting '+id));
+                $.ajax({
+                    "url": "/resident/"+encodeURI(id),
+                    "method":"DELETE",
+                    "data":"",
+                    "dataType": "JSON",
+                    contentType: "application/json; charset=utf-8",
+                    "success":function(result){
+                        //console.log(result);
+                            
+                    },
+                    "error":function(xhr,status,error){
+                        console.log("error: "+status+" msg:"+error);
+                    }
+                });
+            }
+
+            getAllResAjax();
+</script>
+</html>
