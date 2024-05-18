@@ -17,7 +17,10 @@
             <th> DELETE </th>
         </tr>
     </tbody></table>
-    
+    <div>
+     <button id="showPrintButton" onclick="Print()">Print Residents Page</button></div>
+    </div>
+
     <div id='createUpdateForm' style="display: none">
         <h2><span id="createLabel">Create</span> <span id="updateLabel">Update</span> Resident</h2>
         <input type="hidden" name="id"/>
@@ -29,6 +32,9 @@
 </div>
 </body>
 <script>
+        function Print(){
+            printResidentAjax()
+        }
 
         function showCreate(){
             document.getElementById('showCreateButton').style.display="none"
@@ -175,6 +181,26 @@
                 for (resident of result){
                     addResidentToTable(resident);
                 }
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    
+    }
+
+    function printResidentAjax(){
+        $.ajax({
+            "url": "/resident",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                //for (resident of result){
+                    //addResidentToTable(resident);
+                    print(result);
                 
             },
             "error":function(xhr,status,error){

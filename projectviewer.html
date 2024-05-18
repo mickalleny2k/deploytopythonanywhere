@@ -19,7 +19,9 @@
             </tr>
     
         </tbody></table>
-        
+        <div>
+            <button id="showPrintButton" onclick="Print()">Print Projects Page</button></div>
+           </div>
         <div id='createUpdateForm' style="display: none">
             <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Project</h2>
             <input type="hidden" name="id"/>
@@ -31,6 +33,10 @@
     </div>
     
     <script>
+        function Print(){
+            printProjectAjax()
+        }
+
         function showCreate(){
             document.getElementById('showCreateButton').style.display="none"
             document.getElementById('projectTable').style.display="none"
@@ -234,6 +240,27 @@
             }
         });
     }
+
+    function printProjectAjax(){
+        $.ajax({
+            "url": "/project",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                //for (resident of result){
+                    //addResidentToTable(resident);
+                    print(result);
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    
+    }
+
     getAllAjax();
           
         

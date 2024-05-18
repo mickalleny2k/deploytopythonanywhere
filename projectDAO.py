@@ -80,6 +80,28 @@ class ProjectDAO:
         self.closeAll()
         return returnvalue
     
+    def findResByName(self, name):
+        cursor = self.getcursor()
+        sql="select * from resident where name = %s"
+        values = (name,)
+
+        cursor.execute(sql, values)
+        result = cursor.fetchone()
+        #returnvalue = self.convertToDictionaryRes(result)
+        self.closeAll()
+        return result
+    
+    def findByName(self, name):
+        cursor = self.getcursor()
+        sql="select * from project where name = %s"
+        values = (name,)
+
+        cursor.execute(sql, values)
+        result = cursor.fetchone()
+        returnvalue = self.convertToDictionaryRes(result)
+        self.closeAll()
+        return returnvalue
+    
     def convertToDictionary(self, resultLine):
         attkeys=['id','name','staff','residents']
         project = {}

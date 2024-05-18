@@ -29,6 +29,14 @@ def findbyid(id):
 def findresbyid(id):
         return jsonify(projectDAO.findResByID(id))
 
+@app.route('/resident/<name>', methods=['GET'])
+def findresbyname(name):
+       return jsonify(projectDAO.findResByName(name))
+
+@app.route('/project/<name>', methods=['GET'])
+def findbyname(name):
+       return jsonify(projectDAO.findByName(name))
+
 # getall
 # curl http://127.0.0.1:5000/project
 
