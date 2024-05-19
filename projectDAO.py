@@ -57,6 +57,38 @@ class ProjectDAO:
             returnArray.append(self.convertToDictionaryRes(result))
         self.closeAll()
         return returnArray
+    
+    def countRes(self):
+        cursor = self.getcursor()
+        sql="select count(*) from resident"
+        cursor.execute(sql)
+        results = cursor.fetchone()
+        self.closeAll()
+        return results
+    
+    def count(self):
+        cursor = self.getcursor()
+        sql="select count(*) from project"
+        cursor.execute(sql)
+        results = cursor.fetchone()
+        self.closeAll()
+        return results
+    
+    def average(self):
+        cursor = self.getcursor()
+        sql="select avg(age) from resident"
+        cursor.execute(sql)
+        results = cursor.fetchone()
+        self.closeAll()
+        return results
+    
+    def totalStaff(self):
+        cursor = self.getcursor()
+        sql="select sum(staff) from project"
+        cursor.execute(sql)
+        results = cursor.fetchone()
+        self.closeAll()
+        return results
 
     def findByID(self, id):
         cursor = self.getcursor()

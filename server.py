@@ -33,6 +33,28 @@ def findresbyid(id):
 def findresbyname(name):
        return jsonify(projectDAO.findResByName(name))
 
+@app.route('/project/count', methods=['GET'])
+def count():
+       var = jsonify(projectDAO.count())
+       print (var)
+       return var
+
+@app.route('/resident/avgage', methods=['GET'])
+def average():
+       var = jsonify(projectDAO.average())
+       print (var)
+       return var
+
+@app.route('/project/totalstaff', methods=['GET'])
+def totalStaff():
+       var = jsonify(projectDAO.totalStaff())
+       print (var)
+       return var
+
+@app.route('/resident/count', methods=['GET'])
+def countres():
+       return jsonify(projectDAO.countRes())
+
 @app.route('/project/<name>', methods=['GET'])
 def findbyname(name):
        return jsonify(projectDAO.findByName(name))
