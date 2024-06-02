@@ -20,8 +20,8 @@
     <div id='createUpdateForm' style="display: none">
         <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Project</h2>
         <input type="hidden" name="id"/>
-        Name <input type="text" name="name" /><br/>
-        Staff <input type="number" name="staff"/> <br/>
+        Candidate Name <input type="text" name="Candidate_Name" /><br/>
+        Electoral Area <input type="number" name="Electoral_Area"/> <br/>
         <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
         <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
 </div>
@@ -68,8 +68,8 @@
             var project = {}
            
             project.id = form.querySelector('input[name="id"]').value
-            project.name = form.querySelector('input[name="name"]').value
-            project.staff = form.querySelector('input[name="staff"]').value
+            project.name = form.querySelector('input[name="Candidate_Name"]').value
+            project.staff = form.querySelector('input[name="Electoral_Area"]').value
             console.log(JSON.stringify(project))
             createProjectAjax(project)
             
@@ -112,8 +112,8 @@ function clearForm(){
     var form = document.getElementById('createUpdateForm')
 
     form.querySelector('input[name="id"]').value=''
-    form.querySelector('input[name="name"]').value=''
-    form.querySelector('input[name="staff"]').value=''
+    form.querySelector('input[name="Candidate_Name"]').value=''
+    form.querySelector('input[name="Electoral_Area"]').value=''
 }
 function getProjectFromRow(rowElement){
     var row ={}
@@ -133,16 +133,16 @@ function populateFormWithProject(project){
     form.querySelector('input[name="id"]').disabled = true
 
     form.querySelector('input[name="id"]').value  = project.id
-    form.querySelector('input[name="name"]').value= project.name
-    form.querySelector('input[name="staff"]').value= project.staff
+    form.querySelector('input[name="Candidate_Name"]').value= project.name
+    form.querySelector('input[name="Electoral_Area"]').value= project.staff
     return project
 }
 function getProjectFromForm(){
     var form = document.getElementById('createUpdateForm')
     var project = {}
     project.id = form.querySelector('input[name="id"]').value
-    project.name = form.querySelector('input[name="name"]').value
-    project.staff = parseInt(form.querySelector('input[name="staff"]').value,10)
+    project.name = form.querySelector('input[name="Candidate_Name"]').value
+    project.staff = parseInt(form.querySelector('input[name="Electoral_Area"]').value,10)
     console.log(JSON.stringify(project))
     return project
 }
