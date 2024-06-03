@@ -1,11 +1,11 @@
 # flask server that links to a DAO
 # author: Michael Allen
 
-from geopy.geocoders import Nominatim
-from gmplot import gmplot
-import os
-import webbrowser
-from googlesearch import search
+#from geopy.geocoders import Nominatim
+#from gmplot import gmplot
+#import os
+#import webbrowser
+#from googlesearch import search
 from flask import Flask, request, jsonify, abort
 #from projectDAOskeleton import projectDAO
 #import projectDAO
@@ -82,7 +82,7 @@ def delete(id):
     #print("Delete done. Row " +id+ "was deleted successfully.")
     #return jsonify(projectDAO.delete(id))
 
-@app.route('/map/<loc>')
+'''@app.route('/map/<loc>')
 def map(loc):
     geolocator = Nominatim(user_agent="MyApp")
 
@@ -100,7 +100,7 @@ def map(loc):
     gmap.draw("my_map.html")
 
     filename = 'file:///'+os.getcwd()+'/' + 'my_map.html'
-    webbrowser.open_new_tab(filename)
+    webbrowser.open_new_tab(filename)'''
 
 if __name__ == "__main__":
     app.run(debug = True)
