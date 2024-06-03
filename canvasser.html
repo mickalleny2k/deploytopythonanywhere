@@ -20,8 +20,8 @@
     <div id='createUpdateForm' style="display: none">
         <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Project</h2>
         <input type="hidden" name="id"/>
-        Candidate Name <input type="text" name="Candidate_Name" /><br/>
-        Electoral Area <input type="number" name="Electoral_Area"/> <br/>
+        Candidate Name <input type="text" name="Name" /><br/>
+        Electoral Area <input type="text" name="Area"/> <br/>
         <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
         <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
 </div>
@@ -68,8 +68,8 @@
             var project = {}
            
             project.id = form.querySelector('input[name="id"]').value
-            project.name = form.querySelector('input[name="Candidate_Name"]').value
-            project.staff = form.querySelector('input[name="Electoral_Area"]').value
+            project.name = form.querySelector('input[name="Name"]').value
+            project.area = form.querySelector('input[name="Area"]').value
             console.log(JSON.stringify(project))
             createProjectAjax(project)
             
@@ -100,7 +100,7 @@ function addProjectToTable(project){
     var cell2 = rowElement.insertCell(1);
     cell2.innerHTML = project.name
     var cell3 = rowElement.insertCell(2);
-    cell3.innerHTML = project.staff
+    cell3.innerHTML = project.area
     var cell4 = rowElement.insertCell(3);
     cell4.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
     var cell5 = rowElement.insertCell(4);
@@ -112,37 +112,38 @@ function clearForm(){
     var form = document.getElementById('createUpdateForm')
 
     form.querySelector('input[name="id"]').value=''
-    form.querySelector('input[name="Candidate_Name"]').value=''
-    form.querySelector('input[name="Electoral_Area"]').value=''
+    form.querySelector('input[name="Name"]').value=''
+    form.querySelector('input[name="Area"]').value=''
 }
 function getProjectFromRow(rowElement){
     var row ={}
     project.id  = rowElement.getAttribute('id')
-    project.title = rowElement.cells[1].firstChild.textContent
-    project.author = rowElement.cells[2].firstChild.textContent
-    project.price = parseInt(rowElement.cells[3].firstChild.textContent,10)
+    project.name = rowElement.cells[1].firstChild.textContent
+    project.area = rowElement.cells[2].firstChild.textContent
+    //project.price = parseInt(rowElement.cells[3].firstChild.textContent,10)
     return project
 }
 function setProjectInRow(rowElement, project){
     rowElement.cells[0].firstChild.textContent= project.id  
     rowElement.cells[1].firstChild.textContent= project.name 
-    rowElement.cells[2].firstChild.textContent= project.staff
+    rowElement.cells[2].firstChild.textContent= project.area
 }
 function populateFormWithProject(project){
     var form = document.getElementById('createUpdateForm')
     form.querySelector('input[name="id"]').disabled = true
 
     form.querySelector('input[name="id"]').value  = project.id
-    form.querySelector('input[name="Candidate_Name"]').value= project.name
-    form.querySelector('input[name="Electoral_Area"]').value= project.staff
+    form.querySelector('input[name="Name"]').value= project.name
+    form.querySelector('input[name="Area"]').value= project.area
     return project
 }
 function getProjectFromForm(){
     var form = document.getElementById('createUpdateForm')
     var project = {}
     project.id = form.querySelector('input[name="id"]').value
-    project.name = form.querySelector('input[name="Candidate_Name"]').value
-    project.staff = parseInt(form.querySelector('input[name="Electoral_Area"]').value,10)
+    project.name = form.querySelector('input[name="Name"]').value
+    project.area = form.querySelector('input[name="Area"]').value,10
+    //project.area = parseInt(form.querySelector('input[name="Area"]').value,10)
     console.log(JSON.stringify(project))
     return project
 }
