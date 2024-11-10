@@ -1,0 +1,30 @@
+<html><head>
+    <title>Feedback Tool</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Feedback Tool</h1>
+    
+            <th><a title="Name">Name <input type="text" name="name" /></a></th>
+            <br/><br/>
+            <th><a title="Age">Age <input type="number" name="age"/></a></th>
+            <br/><br/>
+            <th>Opinion<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
+            <br/><br/>
+            <th> Next course<br/><textarea name="Text2" cols="40" rows="5"></textarea> </th>
+            <br/><br/>
+        
+            <br/><div> <button id="showCreateButton" onclick="showCreate()">SUBMIT</button></div>
+    <div id='createUpdateForm' style="display: none">
+        <h2><span Name="createLabel">Create </span>Candidate</h2>
+        <input type="hidden" name="id"/>
+        Name <input type="text" name="name" /> <br/>
+        Party <input type="text" name="party"/> <br/>
+        Constituency <input type="text" name="constituency"/> <br/>
+        Years in Office <input type="number" name="years"/> <br/>
+        <span><button id="doCreateButton" onclick="doCreate()">SUBMIT</button></span>
+</div>
+</body>
