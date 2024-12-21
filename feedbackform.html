@@ -1,0 +1,71 @@
+<html><head>
+    <title>Feedback Tool</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Cork Simon E&T Feedback Tool</h1>
+    <img src="Simon.jpg" alt="Cork Simon logo" width="250" height="300"><br/><p></p>
+            <th><a title="Course Name">Course Name <input type="text" name="name" /></a></th>
+            <br/><br/>
+            Were you happy with the course ? <br>
+            Yes <input type="radio" name="Status" value="Yes" id="Yes">
+            No <input type="radio" name="Status" value="No" id="No"><br>
+            <br/>
+            What score would you give the course ? <br>  
+            Terribe <input type="radio" name="Status" value="Terribe" id="Terribe">
+                Bad     <input type="radio" name="Status" value="Bad" id="Bad">
+                OK <input type="radio" name="Status" value="OK" id="OK">
+                Very good <input type="radio" name="Status" value="Very good" id="Very good">
+                Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
+            <br/>
+            <th> What other courses are you interested in ?<br/><textarea name="Text2" cols="40" rows="5"></textarea> </th>
+            <br/><br/>
+
+            <form name="form1" id="form1" action="/action_page.php">
+                What course would you like to do next ? <select name="subject" id="subject">
+                  <option value="" selected="selected">Select course</option>
+                  <option value="" selected="selected">Forklift</option>
+                  <option value="" selected="selected">Power Pallet</option>
+                  <option value="" selected="selected">Food Hygiene</option>
+                  <option value="" selected="selected">Safepass</option>
+                  <option value="" selected="selected">Manual Handling</option>
+                </select>
+                <br><br>
+                And after that: <select name="topic" id="topic">
+                    <option value="" selected="selected">Select course</option>
+                    <option value="" selected="selected">Forklift</option>
+                    <option value="" selected="selected">Power Pallet</option>
+                    <option value="" selected="selected">Food Hygiene</option>
+                    <option value="" selected="selected">Safepass</option>
+                    <option value="" selected="selected">Manual Handling</option>
+                </select>
+                <br><br>
+                And after that: <select name="chapter" id="chapter">
+                    <option value="" selected="selected">Select course</option>
+                    <option value="" selected="selected">Forklift</option>
+                    <option value="" selected="selected">Power Pallet</option>
+                    <option value="" selected="selected">Food Hygiene</option>
+                    <option value="" selected="selected">Safepass</option>
+                    <option value="" selected="selected">Manual Handling</option>
+                </select>
+                <br><br>
+              </form>
+              <th>What's your opinion of this course ?<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
+            <br/><br/>
+            <th>Anything you want to say.....<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
+            <br/><br/>
+            <br/><div> <button id="showCreateButton" onclick="showCreate()">SUBMIT</button></div>
+            <br/><br/>
+    <div id='createUpdateForm' style="display: none">
+        <h2><span Name="createLabel">Create </span>Candidate</h2>
+        <input type="hidden" name="id"/>
+        Name <input type="text" name="name" /> <br/>
+        Party <input type="text" name="party"/> <br/>
+        Constituency <input type="text" name="constituency"/> <br/>
+        Years in Office <input type="number" name="years"/> <br/>
+        <span><button id="doCreateButton" onclick="doCreate()">SUBMIT</button></span>
+</div>
+</body>
