@@ -8,21 +8,78 @@
 <body>
     <h1>Cork Simon E&T Feedback Tool</h1>
     <img src="Simon.jpg" alt="Cork Simon logo" width="250" height="300"><br/><p></p>
-            <th><a title="Course Name">Course Name <input type="text" name="name" /></a></th>
+            <th><a title="Name ">Your name (optional) <input type="text" name="name" /></a></th>
             <br/><br/>
-            Were you happy with the course ? <br>
+            <th><a title="Course Name">Course attended <input type="text" name="course" /></a></th>
+            <br/><br/>
+            <hr>
+            <strong>Were you happy with the course ?</strong> <br>
             Yes <input type="radio" name="Status" value="Yes" id="Yes">
             No <input type="radio" name="Status" value="No" id="No"><br>
             <br/>
-            What score would you give the course ? <br>  
-            Terribe <input type="radio" name="Status" value="Terribe" id="Terribe">
+            <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
+            <br/><br/>
+            
+            <strong>What score would you give the course ?</strong ><br>  
+            Terrible <input type="radio" name="Status" value="Terribe" id="Terribe">
                 Bad     <input type="radio" name="Status" value="Bad" id="Bad">
                 OK <input type="radio" name="Status" value="OK" id="OK">
                 Very good <input type="radio" name="Status" value="Very good" id="Very good">
                 Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
             <br/>
-            <th> What other courses are you interested in ?<br/><textarea name="Text2" cols="40" rows="5"></textarea> </th>
+            <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
             <br/><br/>
+            <strong>Let us know your thoughts on the venue</strong > (Was it clean and tidy ?)<br>  
+                Terrible <input type="radio" name="Status" value="Terribe" id="Terribe">
+                    Bad     <input type="radio" name="Status" value="Bad" id="Bad">
+                    OK <input type="radio" name="Status" value="OK" id="OK">
+                    Very good <input type="radio" name="Status" value="Very good" id="Very good">
+                    Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
+                <br/>
+                <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
+                <br/><br/>
+            <strong>What score would you give the tutor ?</strong ><br>  
+                Terrible <input type="radio" name="Status" value="Terribe" id="Terribe">
+                    Bad     <input type="radio" name="Status" value="Bad" id="Bad">
+                    OK <input type="radio" name="Status" value="OK" id="OK">
+                    Very good <input type="radio" name="Status" value="Very good" id="Very good">
+                    Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
+                <br/>
+                <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
+                <br/><br/>
+                <strong>What score would you give the course materials ?</strong > (handouts,etc)<br>  
+                    Terrible <input type="radio" name="Status" value="Terribe" id="Terribe">
+                        Bad     <input type="radio" name="Status" value="Bad" id="Bad">
+                        OK <input type="radio" name="Status" value="OK" id="OK">
+                        Very good <input type="radio" name="Status" value="Very good" id="Very good">
+                        Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
+                    <br/>
+                    <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
+                    <br/><br/>
+
+                <strong>Course administration </strong >   (Were you happy with the information you received prior to starting the course ?)<br>
+                     
+                    Terrible <input type="radio" name="Status" value="Terribe" id="Terribe">
+                        Bad     <input type="radio" name="Status" value="Bad" id="Bad">
+                        OK <input type="radio" name="Status" value="OK" id="OK">
+                        Very good <input type="radio" name="Status" value="Very good" id="Very good">
+                        Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
+                    <br/>
+                    <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
+                    <br/><br/>
+
+                <strong>Feedback from tutor</strong ><br>  
+                    Terrible <input type="radio" name="Status" value="Terribe" id="Terribe">
+                        Bad     <input type="radio" name="Status" value="Bad" id="Bad">
+                        OK <input type="radio" name="Status" value="OK" id="OK">
+                        Very good <input type="radio" name="Status" value="Very good" id="Very good">
+                        Fantastic <input type="radio" name="Status" value="Fantastic" id="Fantastic"><br>
+                    <br/>
+                    <th><a title="Comment">Write a comment<input type="text" name="comment" /></a></th>
+                    <br/><br/> 
+                <th>Are there any areas that you felt should have been covered in more detail by the course ?<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
+                <br/><br/>   
+            <hr>
 
             <form name="form1" id="form1" action="/action_page.php">
                 What course would you like to do next ? <select name="subject" id="subject">
@@ -34,7 +91,7 @@
                   <option value="" selected="selected">Manual Handling</option>
                 </select>
                 <br><br>
-                And after that: <select name="topic" id="topic">
+                And what course would you like to do after that: <select name="topic" id="topic">
                     <option value="" selected="selected">Select course</option>
                     <option value="" selected="selected">Forklift</option>
                     <option value="" selected="selected">Power Pallet</option>
@@ -43,22 +100,17 @@
                     <option value="" selected="selected">Manual Handling</option>
                 </select>
                 <br><br>
-                And after that: <select name="chapter" id="chapter">
-                    <option value="" selected="selected">Select course</option>
-                    <option value="" selected="selected">Forklift</option>
-                    <option value="" selected="selected">Power Pallet</option>
-                    <option value="" selected="selected">Food Hygiene</option>
-                    <option value="" selected="selected">Safepass</option>
-                    <option value="" selected="selected">Manual Handling</option>
-                </select>
-                <br><br>
+                <th><a title="Comment">Are there any other courses you are interested in that are not in the dropdown list above : <input type="text" name="comment" /></a></th>
+                <br/><br/>
               </form>
-              <th>What's your opinion of this course ?<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
-            <br/><br/>
-            <th>Anything you want to say.....<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
+            <th>Any other comments<br/><textarea name="Text1" cols="40" rows="5"></textarea></th>
             <br/><br/>
             <br/><div> <button id="showCreateButton" onclick="showCreate()">SUBMIT</button></div>
             <br/><br/>
+
+            <strong>Thank you for completing this form. Your feedback is important to us and will help us to improve our courses.</strong>
+            <br><br/>
+            <hr>
     <div id='createUpdateForm' style="display: none">
         <h2><span Name="createLabel">Create </span>Candidate</h2>
         <input type="hidden" name="id"/>
