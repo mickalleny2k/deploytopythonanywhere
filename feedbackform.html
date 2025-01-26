@@ -3,20 +3,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    scale=1.0">
-    <title>Radio Button Size</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      input [type="text"] {
-        padding: 50px;
-        margin-bottom: 50px;
-      }
-      form,
-      label {
-        margin: 20px;
-      }
         input[type="radio"] {
             margin: 0 80px 0 10px;
             transform: scale(4.5); /* Adjust the scale value as needed */
+            background-color: #ffee05;
+        }
+        input[type="date"] {
+            font-size: 50px;
+            border: 5px solid #110101;
+            padding: 12px 20px;
+            background-color: #ffee05;
+        }
+        textarea {
+            width: 100%;
+            font-size: 50px;
+            padding: 12px 20px;
+            border: 2px solid #141010;
+            border-radius: 4px;
+            background-color: #ffee05;
+            resize: none;
+        }
+        select {
+            font-size: 50px;
+            border: 5px solid #110101;
+            padding: 12px 20px;
+            background-color: #ffee05;
+        }
+        option {
+            font-size: 50px;
+            border:5px solid #110101;
+            padding: 12px 20px;
+            background-color: #ffee05;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border:2px solid #110101;
+            padding: 12px 20px;
+            background-color: #ffffff;
+        }
+        .textbox {
+            border: 5px solid#110101; /* Black border with 2px width */
+            padding: 10px; /* Add some padding */
+            background-color: #ffee05;
         }
     </style>
 </head>
@@ -24,12 +57,12 @@
 <body>
     <h1 style="font-size:130px" style="font-family:'Courier New'"><strong>Cork Simon E&T Feedback Tool</strong></h1><br>
     <!--<img src="Simon.jpg" alt="Cork Simon logo" width="250" height="300"><br/><p></p>-->
-            <th><a style="font-size:70px" title="Name ">Your name (optional) : <input type="text" name="name" /></a></th>
+            <th><a style="font-size:70px" title="Name ">Your name (optional) : <input type="text" class="textbox" placeholder="Type your name here" name="name" /></a></th>
             <br/><br/>
             <label style="font-size:70px" for="birthday">Date today    :</label>
             <input style="font-size:70px" type="date" id="birthday" name="birthday">
             <br/><br/>
-            <th><a style="font-size:70px" title="Course Name">Course attended : <input type="text" name="course" /></a></th>
+            <th><a style="font-size:70px" title="Course Name">Course attended : <input type="text" class="textbox" placeholder="Type course name here" name="course" /></a></th>
             <br/><br/>
             <hr>
             <th><a style="font-size:70px"><strong> Were you happy with the course ? </strong>
@@ -46,7 +79,7 @@
                 Very good <input type="radio" name="Status1" value="Very good" id="Very good">
                 Fantastic <input type="radio" name="Status1" value="Fantastic" id="Fantastic"><br>
             <br/>
-            <th><a style="font-size:70px" title="Comment">Write a comment (optional) : <textarea name="Text1" cols="40" rows="1"></textarea></a></th>
+            <th><a style="font-size:70px" title="Comment">Write a comment (optional) : <textarea name="Text1" cols="40" rows="1" placeholder="Type a comment here"></textarea></a></th>
             <br/><br/>
             <br><br>
             <th><a style="font-size:70px"><strong>Let us know your thoughts on the venue</strong > (Was the classroom clean and tidy ?)</a></th><br>  
@@ -108,7 +141,7 @@
             <h2 style="font-size:120px" style="font-family:'Courier New'"><strong>WHAT'S NEXT ? </strong></h2><br>
 
             <form name="form1" id="form1" action="/action_page.php">
-                <a style="font-size:100px">What course would you like to do next ?<br> Select a course from the list below:<br></a> <select style="font-size:100px;" name="subject" id="subject"><br>
+                <a style="font-size:100px">What course would you like to do next ?<br> Select a course from the dropdown menu below:<br></a> <select style="font-size:100px;" name="subject" id="subject"><br>
                   <br>
                   <option value="" selected="selected">Select course</option>
                   <option value="" selected="selected">Forklift</option>
@@ -123,7 +156,7 @@
                 </select>
                 <br/><br/><br/>
                 <br><br>
-                <a style="font-size:100px">Any other courses you'd like to do ? <br> Select a course from the list below: </a> <select style="font-size:100px;" name="topic" id="topic">
+                <a background-color="#eeff05" style="font-size:100px">Any other courses you'd like to do ? <br> Select another course from the dropdown menu below: </a> <select style="font-size:100px;" name="topic" id="topic">
                     <option value="" selected="selected">Select course</option>
                     <option value="" selected="selected">Forklift</option>
                     <option value="" selected="selected">Power Pallet</option>
@@ -137,26 +170,316 @@
                 </select>
                 <br/><br/><br/>
                 <br><br>
-                <th><a style="font-size:100px" title="Comment">Other courses you are interested in (that are not in the list).<br> Please type the name of the course in the box : <textarea name="Text1" cols="40" rows="2"></textarea></a></th>
+                <th><a style="font-size:100px" title="Comment">Are you interested in any other courses ? <textarea name="Text1" cols="40" rows="2" placeholder="Type course names here "></textarea></a></th>
                 <br/><br/><br/>
                 <br/><br/>
               </form>
-            <th><a style="font-size:100px">Any other comments : <br/><textarea name="Text1" cols="40" rows="2"></textarea></a></th><br>
+            <th><a style="font-size:100px">Any other comments : <br/><textarea name="Text1" cols="40" rows="4"></textarea></a></th><br>
             <br/><br/>
-            <br/><div> <button style="font-size : 150px; width: 1400px; height: 300px;"  id="showCreateButton" onclick="showCreate()">SUBMIT</button></div>
+            <br/><div> <button style="font-size : 150px; width: 1400px; height: 300px;"  id="submitButton" onclick="submit()">SUBMIT</button></div>
             <br/><br/>
 
             <a style="font-size:100px"><strong>Thank you for completing this form. </strong></a>
             <br><br/>
             <hr>
-    <div id='createUpdateForm' style="display: none">
-        <h2><span Name="createLabel">Create </span>Candidate</h2>
+    <div id='submitForm' style="display: none">
+        <h2><span Name="submitLabel">Submit</h2>
         <input type="hidden" name="id"/>
-        Name <input type="text" name="name" /> <br/>
-        Party <input type="text" name="party"/> <br/>
-        Constituency <input type="text" name="constituency"/> <br/>
-        Years in Office <input type="number" name="years"/> <br/>
-        <span><button id="doCreateButton" onclick="doCreate()">SUBMIT</button></span>
+        Your Name <input type="text" name="student_name" /> <br/>
+        Date <input type="date" name="date"/> <br/>
+        Course Name <input type="text" name="course_name"/> <br/>
+        <!--Years in Office <input type="number" name="years"/> <br/>-->
+        <span><button id="doSubmitButton" onclick="doSubmit()">SUBMIT</button></span>
 </div>
 <img src="Simon.jpg" alt="Cork Simon logo" width="1400" height="1400"><br/><p></p>
 </body>
+<script>
+    function Print(){
+        printResidentAjax()
+    }
+
+    function submit(){
+        document.getElementById('submitButton').style.display="none"
+        document.getElementById('feedbackTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+
+        document.getElementById('createLabel').style.display="inline"
+        document.getElementById('updateLabel').style.display="none"
+
+        document.getElementById('doSubmitButton').style.display="block"
+        document.getElementById('doUpdateButton').style.display="none"
+    
+        }
+    function showViewAllRes(){
+        document.getElementById('showCreateButton').style.display="block"
+        document.getElementById('feedbackTable').style.display="block"
+        document.getElementById('createUpdateForm').style.display="none"
+        }
+
+    function showUpdateRes(buttonElement){
+        document.getElementById('showCreateButton').style.display="none"
+        document.getElementById('feedbackTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+
+        document.getElementById('createLabel').style.display="none"
+        document.getElementById('updateLabel').style.display="inline"
+
+        document.getElementById('doCreateButton').style.display="none"
+        document.getElementById('doUpdateButton').style.display="block"
+
+
+        var rowElement = buttonElement.parentNode.parentNode
+        // this is a way of finding the closest <tr> which would safer, closest()
+        
+        var resident = getResidentFromRow(rowElement)
+        populateFormWithResident(resident)
+    }
+    function doCreateFeedback(){
+            var form = document.getElementById('createUpdateForm')
+    
+            var feedback = {}
+           
+            resident.id = form.querySelector('input[name="id"]').value
+            resident.name = form.querySelector('input[name="student_name"]').value
+            resident.age = form.querySelector('input[name="date"]').value
+            resident.ppsn = form.querySelector('input[name="course_name"]').value
+            console.log(JSON.stringify(feedback))
+            createResidentAjax(feedback)
+        }
+    function doCreateRes(){
+            var form = document.getElementById('createUpdateForm')
+    
+            var resident = {}
+           
+            resident.id = form.querySelector('input[name="id"]').value
+            resident.name = form.querySelector('input[name="name"]').value
+            resident.age = form.querySelector('input[name="age"]').value
+            resident.ppsn = form.querySelector('input[name="ppsn"]').value
+            console.log(JSON.stringify(resident))
+            createResidentAjax(resident)
+        }
+
+        function doUpdateRes(){
+            var resident = getResidentFromForm();
+            var rowElement = document.getElementById(resident.id);
+            updateResidentAjax(resident);
+            setResidentInRow(rowElement,resident);
+           
+            clearResForm();
+            showViewAllRes();
+        }
+
+        function doDeleteRes(r){
+            var tableElement = document.getElementById('residentTable');
+            var rowElement = r.parentNode.parentNode;
+            var index = rowElement.rowIndex;
+            deleteResidentAjax(rowElement.getAttribute("id"));
+            tableElement.deleteRow(index);
+        }
+
+    function addResidentToTable(resident){
+        var tableElement = document.getElementById('residentTable')
+        var rowElement = tableElement.insertRow(-1)
+        rowElement.setAttribute('id',resident.id)
+        var cell1 = rowElement.insertCell(0);
+        cell1.innerHTML = resident.id
+        var cell2 = rowElement.insertCell(1);
+        cell2.innerHTML = resident.name
+        var cell3 = rowElement.insertCell(2);
+        cell3.innerHTML = resident.age
+        var cell4 = rowElement.insertCell(3);
+        cell4.innerHTML = resident.ppsn
+        var cell5 = rowElement.insertCell(4);
+        cell5.innerHTML = '<button onclick="showUpdateRes(this)">Update</button>'
+        var cell6 = rowElement.insertCell(5);
+        cell6.innerHTML = '<button onclick=doDeleteRes(this)>Delete</button>'    
+    }
+    
+    function addFeedbackToTable(feedback){
+        var tableElement = document.getElementById('feedbackTable')
+        var rowElement = tableElement.insertRow(-1)
+        rowElement.setAttribute('id',feedback.id)
+        var cell1 = rowElement.insertCell(0);
+        cell1.innerHTML = feedback.id
+        var cell2 = rowElement.insertCell(1);
+        cell2.innerHTML = feedback.student_name
+        var cell3 = rowElement.insertCell(2);
+        cell3.innerHTML = resident.date
+        var cell4 = rowElement.insertCell(3);
+        cell4.innerHTML = resident.course_name
+        var cell5 = rowElement.insertCell(4);
+        cell5.innerHTML = '<button onclick="showUpdateRes(this)">Update</button>'
+        var cell6 = rowElement.insertCell(5);
+        cell6.innerHTML = '<button onclick=doDeleteRes(this)>Delete</button>'    
+    }
+    
+    function clearResForm(){
+        var form = document.getElementById('createUpdateForm')
+    
+        form.querySelector('input[name="id"]').value=''
+        form.querySelector('input[name="name"]').value=''
+        form.querySelector('input[name="age"]').value=''
+        form.querySelector('input[name="ppsn"]').value=''
+}
+
+function clearFeedbackForm(){
+        var form = document.getElementById('createFeedbackForm')
+    
+        form.querySelector('input[name="id"]').value=''
+        form.querySelector('input[name="student_name"]').value=''
+        form.querySelector('input[name="date"]').value=''
+        form.querySelector('input[name="course_name"]').value=''
+}
+
+function getResidentFromRow(rowElement){
+    var row ={}
+    resident.id  = rowElement.getAttribute('id')
+    resident.name = rowElement.cells[1].firstChild.textContent
+    //project.staff = rowElement.cells[2].firstChild.textContent
+    resident.age = parseInt(rowElement.cells[2].firstChild.textContent,10)
+    resident.ppsn = rowElement.cells[3].firstChild.textContent
+    return resident
+}
+
+function getFeedbackFromRow(rowElement){
+    var row ={}
+    feedback.id  = rowElement.getAttribute('id')
+    feedback.student_name = rowElement.cells[1].firstChild.textContent
+    //project.staff = rowElement.cells[2].firstChild.textContent
+    feedback.date = parseInt(rowElement.cells[2].firstChild.textContent,10)
+    feedback.course_name = rowElement.cells[3].firstChild.textContent
+    return feedback
+}
+
+function setResidentInRow(rowElement, resident){
+    rowElement.cells[0].firstChild.textContent= resident.id  
+    rowElement.cells[1].firstChild.textContent= resident.name 
+    rowElement.cells[2].firstChild.textContent= resident.age
+    rowElement.cells[3].firstChild.textContent= resident.ppsn
+}
+   
+function populateFormWithResident(resident){
+    var form = document.getElementById('createUpdateForm')
+    form.querySelector('input[name="id"]').disabled = true
+
+    form.querySelector('input[name="id"]').value = resident.id
+    form.querySelector('input[name="name"]').value = resident.name
+    form.querySelector('input[name="age"]').value = resident.age
+    form.querySelector('input[name="ppsn"]').value = resident.ppsn
+    return resident
+}
+
+function getResidentFromForm(){
+    var form = document.getElementById('createUpdateForm')
+    var resident = {}
+    resident.id = form.querySelector('input[name="id"]').value
+    resident.name = form.querySelector('input[name="name"]').value
+    resident.age = parseInt(form.querySelector('input[name="age"]').value,10)
+    resident.ppsn = form.querySelector('input[name="ppsn"]').value
+    console.log(JSON.stringify(resident))
+    return resident
+}
+
+function getAllResAjax(){
+    $.ajax({
+        "url": "/resident",
+        "method":"GET",
+        "data":"",
+        "dataType": "JSON",
+        "success":function(result){
+            //console.log(result);
+            for (resident of result){
+                addResidentToTable(resident);
+            }
+            
+        },
+        "error":function(xhr,status,error){
+            console.log("error: "+status+" msg:"+error);
+        }
+    });
+
+}
+
+function printResidentAjax(){
+    $.ajax({
+        "url": "/resident",
+        "method":"GET",
+        "data":"",
+        "dataType": "JSON",
+        "success":function(result){
+            //console.log(result);
+            //for (resident of result){
+                //addResidentToTable(resident);
+                print(result);
+            
+        },
+        "error":function(xhr,status,error){
+            console.log("error: "+status+" msg:"+error);
+        }
+    });
+
+}
+
+function createResidentAjax(resident){
+    //var project = {"id":1, "name":"E & T","staff":9}
+    console.log(JSON.stringify(resident));
+    $.ajax({
+        "url": "/resident",
+        "method":"POST",
+        "data":JSON.stringify(resident),
+        "dataType": "JSON",
+        contentType: "application/json; charset=utf-8",
+        "success":function(result){
+            //console.log(result);
+            resident.id = result.id
+            addResidentToTable(resident)
+            clearResForm()
+            showViewAllRes()
+        },
+        "error":function(xhr,status,error){
+            console.log("error: "+status+" msg:"+error);
+        }
+    });
+}
+
+function updateResidentAjax(resident){
+    //var project = {"id":1, "name":"Education and Training","staff":33}
+    console.log(JSON.stringify(resident));
+    $.ajax({
+        "url": "/resident/"+encodeURI(resident.id),
+        "method":"PUT",
+        "data":JSON.stringify(resident),
+        "dataType": "JSON",
+        contentType: "application/json; charset=utf-8",
+        "success":function(result){
+            // console.log(result);
+                
+        },
+        "error":function(xhr,status,error){
+            console.log("error: "+status+" msg:"+error);
+        }
+    });
+}
+
+function deleteResidentAjax(id){
+            
+            //console.log(JSON.stringify('deleting '+id));
+            $.ajax({
+                "url": "/resident/"+encodeURI(id),
+                "method":"DELETE",
+                "data":"",
+                "dataType": "JSON",
+                contentType: "application/json; charset=utf-8",
+                "success":function(result){
+                    //console.log(result);
+                        
+                },
+                "error":function(xhr,status,error){
+                    console.log("error: "+status+" msg:"+error);
+                }
+            });
+        }
+
+        getAllResAjax();
+</script>
+</html>
