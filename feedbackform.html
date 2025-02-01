@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     scale=1.0">
     <style>
+        .pointer { cursor: pointer; }
+        .crosshair { cursor: crosshair; }
+        .text { cursor: text; }
         body, html {
             height: 100%;
             margin: 0;
@@ -16,12 +19,12 @@
         }
         input[type="radio"] {
             text-align: center;
-            margin: 0 150px 0 10px;
+            margin: 0 150px 0 20px;
             transform: scale(4.5); /* Adjust the scale value as needed */
             background-color: #ffee05;
         }
         input[type="checkbox"] {
-            margin: 0 80px 0 10px;
+            margin: 0 80px 0 20px;
             transform: scale(4.5); /* Adjust the scale value as needed */
             background-color: #ffee05;
         }
@@ -35,7 +38,7 @@
             width: 90%;
             font-size: 50px;
             padding: 12px 20px;
-            border: 2px solid #141010;
+            border: 5px solid #141010;
             border-radius: 4px;
             background-color: #ffee05;
             resize: none;
@@ -214,10 +217,10 @@
                     <label for="subscribe6">- Personal Development Courses</label>
                     <input type="checkbox" id="subscribe6" name="subscribe" value="newsletter">
                 </form>
-            <br/><div> <button style="font-size : 150px; width: 1400px; height: 300px;"  id="submitButton" onclick="submit()">SUBMIT</button></div>
+            <br/><div> <button style="font-size : 150px; width: 1000px; height: 300px;"  id="submitButton" onclick="submit()">SUBMIT</button></div>
             <br/><br/>
 
-            <a style="font-size:100px"><strong>Thank you for completing this form. </strong></a>
+            <a style="text-align: center;font-size:100px"><strong>Thank you for completing this form. </strong></a>
             <br><br/>
             <hr>
     <div id='submitForm' style="display: none">
