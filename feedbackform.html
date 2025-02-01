@@ -1,5 +1,5 @@
 <html><head>
-    <title>Feedback Tool</title>
+    <title>Training Feedback Form</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     scale=1.0">
     <style>
-        body {
-            max-width: max-content;
-            margin: auto;
-            font-family: Arial, Helvetica, sans-serif;
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: grid;
+            place-items: center;
             background-color: #bde4fa;
         }
         input[type="radio"] {
@@ -69,9 +70,9 @@
             <th><a style="font-size:70px" title="Course Name">Course attended : <input type="text" class="textbox" placeholder="Type course name here" name="course" /></a></th>
             <br/><br/>
             <hr>-->
-            <th><a style="font-size:70px" title="Name ">Your name (optional) : <input type="text" class="textbox" placeholder="Type your name here" name="name" /></a></th>
+            <th><a style="text-align: center;font-size:70px" title="Name ">Your name (optional) : <input type="text" class="textbox" placeholder="Type your name here" name="name" /></a></th>
             <br><br><br><br><br><br>
-            <th><a style="font-size:70px"><strong> Were you happy with the course ? </strong>
+            <th><a style="text-align: center;font-size:70px"><strong> Were you happy with the course ? </strong>
             Yes <input type="radio" name="Status" value="Yes" id="Yes">
             No <input type="radio" name="Status" value="No" id="No"><br>
             <br/>
