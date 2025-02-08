@@ -72,7 +72,7 @@ def getall():
 
 @app.route('/resident', methods=['GET'])
 def getallres():
-        return jsonify(projectDAO.getAll())
+        return jsonify(projectDAO.getAllTrain())
 
 @app.route('/training', methods=['GET'])
 def getalltrain():
