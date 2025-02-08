@@ -34,17 +34,31 @@ class ProjectDAO:
          
     def getAll(self):
         cursor = self.getcursor()
-        sql="select * from project"
+        sql="select * from training"
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
         #print(results)
         for result in results:
             #print(result)
-            returnArray.append(self.convertToDictionary(result))
+            returnArray.append(self.convertToDictionaryTrain(result))
         
         self.closeAll()
         return returnArray
+    
+    def getAllTrain(self):
+            cursor = self.getcursor()
+            sql="select * from training"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            returnArray = []
+            #print(results)
+            for result in results:
+                #print(result)
+                returnArray.append(self.convertToDictionaryTrain(result))
+            
+            self.closeAll()
+            return returnArray
 
     def findByID(self, id):
         cursor = self.getcursor()
@@ -56,15 +70,35 @@ class ProjectDAO:
         returnvalue = self.convertToDictionary(result)
         self.closeAll()
         return returnvalue
+        
+    def findByTrainID(self, id):
+        cursor = self.getcursor()
+        sql="select * from training where id = %s"
+        values = (id,)
 
-    def convertToDictionary(self, resultLine):
-        attkeys=['id','name','area']
+        cursor.execute(sql, values)
+        result = cursor.fetchone()
+        returnvalue = self.convertToDictionary(result)
+        self.closeAll()
+        return returnvalue
+
+    def convertToDictionaryTrain(self, resultLine):
+        attkeys=['id','name','happy','overall','venue','tutor','materials','admin','feedback_tutor','anycomments','courses']
         project = {}
         currentkey = 0
         for attrib in resultLine:
             project[attkeys[currentkey]] = attrib
             currentkey = currentkey + 1 
         return project
+
+    def convertToDictionary(self, resultLine):
+            attkeys=['id','name','happy','overall','venue','tutor','materials']
+            training = {}
+            currentkey = 0
+            for attrib in resultLine:
+                training[attkeys[currentkey]] = attrib
+                currentkey = currentkey + 1 
+            return training
 
     def delete(self, id):
         cursor = self.getcursor()
@@ -81,8 +115,8 @@ class ProjectDAO:
 
     def create(self, project):
         cursor = self.getcursor()
-        sql="insert into project (name,area) values (%s,%s)"
-        values = (project.get("name"), project.get("area"))
+        sql="insert into project (name,staff,residents) values (%s,%s,%s)"
+        values = (project.get("name"), project.get("staff"), project.get("residents"))
         cursor.execute(sql, values)
 
         self.connection.commit()
@@ -90,7 +124,24 @@ class ProjectDAO:
         project["id"] = newid
         self.closeAll()
         return project
-    
+
+    def createTrain(self, training):
+            #print(training)
+            print(training.get("courses"))
+            allcourses = str(training.get("courses"))+' '+str(training.get("courses1"))+' '+str(training.get("courses2"))+' '+str(training.get("courses3"))+' '+ str(training.get("courses4"))+' '+ str(training.get("courses5"))+' '+ str(training.get("courses6"))
+            print(allcourses)
+            cursor = self.getcursor()
+            sql="insert into training (name,happy,overall,venue,tutor,materials,admin,feedback_tutor,anycomments,courses) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            values = (training.get("name"), training.get("happy"), training.get("overall"), training.get("venue"), training.get("tutor"), training.get("materials"), training.get("admin"), training.get("feedback_tutor"), training.get("anycomments"), allcourses)
+            #cursor.execute(sql,(values,))
+            cursor.execute(sql,values)
+
+            self.connection.commit()
+            newid = cursor.lastrowid
+            training["id"] = newid
+            self.closeAll()
+            return training
+        
     def update(self,id,project):
         cursor = self.getcursor()
         sql="update project set name=%s,staff=%s where id = %s"

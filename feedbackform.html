@@ -10,6 +10,19 @@
         .pointer { cursor: pointer; }
         .crosshair { cursor: crosshair; }
         .text { cursor: text; }
+        .custom-alert {
+            width: 300px; /* Adjust the width */
+            padding: 20px; /* Adjust the padding */
+            background-color: #f44336; /* Background color */
+            color: white; /* Text color */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            position: fixed; /* Fixed position */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Center alignment */
+            z-index: 1000; /* Ensure it appears above other elements */
+        }
         body, html {
             height: 100%;
             margin: 0;
@@ -80,75 +93,77 @@
             <th><a style="font-size:70px" title="Course Name">Course attended : <input type="text" class="textbox" placeholder="Type course name here" name="course" /></a></th>
             <br/><br/>
             <hr>-->
-            <th><a style="text-align: center;font-size:70px" title="Name ">Your name (optional) : <input type="text" class="textbox" placeholder="Type your name here" name="name" /></a></th>
+            <div id='feedbackForm' style="text-align: center" >
+            <input type="hidden" name="id"/>
+            <th><a style="text-align: center;font-size:70px" title="Name ">Your name (optional) : <input type="text" class="textbox" placeholder="Type your name here" name="student_name" /></a></th>
             <br><br><br><br><br><br>
             <th><a style="text-align: center;font-size:70px"><strong> Were you happy with the course ? </strong>
             <br>
-            Yes <input type="radio" name="Status" value="Yes" id="Yes">
-            No <input type="radio" name="Status" value="No" id="No"><br>
+            Yes <input type="radio" name="Happy" value="Yes" id="Yes">
+            No <input type="radio" name="Happy" value="No" id="No"><br>
             <br/>
             <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
             <br/><br/>
             <br><br> -->
             <th><a style="text-align: center;font-size:70px"><strong>How would you rate the course overall ?</strong ></a></th><br>  
-                <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status1" value="Poor" id="Terribe">
-                   Fair <input type="radio" name="Status1" value="Bad" id="Bad">
-                Satisfactory <input type="radio" name="Status1" value="OK" id="OK">
-                Good <input type="radio" name="Status1" value="Very good" id="Very good">
-                Excellent <input type="radio" name="Status1" value="Fantastic" id="Fantastic"><br>
+                <a style="text-align: center;font-size:60px">Poor <input type="radio" name="Status1" value="Poor" id="Poor">
+                Fair <input type="radio" name="Status1" value="Fair" id="Fair">
+                Satisfactory <input type="radio" name="Status1" value="Satisfactory" id="Satisfactory">
+                Good <input type="radio" name="Status1" value="Good" id="Good">
+                Excellent <input type="radio" name="Status1" value="Excellent" id="Excellent"></a><br>
             <br/>
             <th><a style="text-align: center;font-size:70px" title="Comment">Write a comment (optional) : <textarea name="Text1" rows="2" placeholder="Type a comment here about the course"></textarea></a></th>
             <br/><br/>
             <br><br>
             <th><a style="text-align: center;font-size:70px"><strong>Let us know your thoughts on the venue</strong > </a></th><br>  
-                <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status2" value="Terribe" id="Terribe">
-                    Fair     <input type="radio" name="Status2" value="Bad" id="Bad">
-                    Satisfactory <input type="radio" name="Status2" value="OK" id="OK">
-                    Good <input type="radio" name="Status2" value="Very good" id="Very good">
-                    Excellent <input type="radio" name="Status2" value="Fantastic" id="Fantastic"><br>
+                <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status2" value="Poor" id="Poor">
+                    Fair     <input type="radio" name="Status2" value="Fair" id="Fair">
+                    Satisfactory <input type="radio" name="Status2" value="Satisfactory" id="Satisfactory">
+                    Good <input type="radio" name="Status2" value="Good" id="Good">
+                    Excellent <input type="radio" name="Status2" value="Excellent" id="Excellent"><br>
                 <br/>
                 <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
                 <br/><br/>
                 <br><br>-->
                 <th><a style="text-align: center;font-size:70px"><strong>What score would you give the tutor ?</strong ></a></th><br>  
-                <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status3" value="Terribe" id="Terribe">
-                    Fair     <input type="radio" name="Status3" value="Bad" id="Bad">
-                    Satisfactory <input type="radio" name="Status3" value="OK" id="OK">
-                    Good <input type="radio" name="Status3" value="Very good" id="Very good">
-                    Excellent <input type="radio" name="Status3" value="Fantastic" id="Fantastic"><br>
+                <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status3" value="Poor" id="Poor">
+                    Fair     <input type="radio" name="Status3" value="Fair" id="Fair">
+                    Satisfactory <input type="radio" name="Status3" value="Satisfactory" id="Satisfactory">
+                    Good <input type="radio" name="Status3" value="Good" id="Good">
+                    Excellent <input type="radio" name="Status3" value="Excellent" id="Excellent"><br>
                 <br/>
                 <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
                 <br/><br/>
                 <br><br>-->
                 <th><a style="text-align: center;font-size:70px"><strong>What score would you give the course materials ?</strong > (handouts,etc)</a></th><br>  
-                    <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status4" value="Terribe" id="Terribe">
-                        Fair     <input type="radio" name="Status4" value="Bad" id="Bad">
-                        Satisfactory <input type="radio" name="Status4" value="OK" id="OK">
-                        Good <input type="radio" name="Status4" value="Very good" id="Very good">
-                        Excellent <input type="radio" name="Status4" value="Fantastic" id="Fantastic"><br>
+                    <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status4" value="Poor" id="Poor">
+                        Fair     <input type="radio" name="Status4" value="Fair" id="Fair">
+                        Satisfactory <input type="radio" name="Status4" value="Satisfactory" id="Satisfactory">
+                        Good <input type="radio" name="Status4" value="Good" id="Good">
+                        Excellent <input type="radio" name="Status4" value="Excellent" id="Excellent"><br>
                     <br/>
                     <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
                     <br/><br/>
                     <br><br>-->
                     <th><a style="text-align: center;font-size:70px"><strong>Course administration </strong >   (Were you happy with the information you received prior to starting the course ?)</a></th><br>
                      
-                    <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status5" value="Terribe" id="Terribe">
-                        Fair     <input type="radio" name="Status5" value="Bad" id="Bad">
-                        Satisfactory <input type="radio" name="Status5" value="OK" id="OK">
-                        Good <input type="radio" name="Status5" value="Very good" id="Very good">
-                        Excellent <input type="radio" name="Status5" value="Fantastic" id="Fantastic"><br>
+                    <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status5" value="Poor" id="Poor">
+                        Fair     <input type="radio" name="Status5" value="Fair" id="Fair">
+                        Satisfactory <input type="radio" name="Status5" value="Satisfactory" id="Satisfactory">
+                        Good <input type="radio" name="Status5" value="Good" id="Good">
+                        Excellent <input type="radio" name="Status5" value="Excellent" id="Excellent"><br>
                     <br/>
                     <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
                     <br/><br/>
                     <br><br>-->
                     <th><a style="font-size:70px"><strong>Feedback from tutor</strong ></a></th><br>  
-                    <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status6" value="Terribe" id="Terribe">
-                        Fair     <input type="radio" name="Status6" value="Bad" id="Bad">
-                        Satisfactory <input type="radio" name="Status6" value="OK" id="OK">
-                        Good <input type="radio" name="Status6" value="Very good" id="Very good">
-                        Excellent <input type="radio" name="Status6" value="Fantastic" id="Fantastic"><br>
+                    <a style="text-align: center;font-size:60px"> Poor <input type="radio" name="Status6" value="Poor" id="Poor">
+                        Fair     <input type="radio" name="Status6" value="Fair" id="Fair">
+                        Satisfactory <input type="radio" name="Status6" value="Satisfactory" id="Satisfactory">
+                        Good <input type="radio" name="Status6" value="Good" id="Good">
+                        Excellent <input type="radio" name="Status6" value="Excellent" id="Excellent"><br>
                     <br/>
-                    <th><a style="text-align: center;font-size:100px">Any other comments : <br/><textarea name="Text1" cols="60" rows="4" placeholder="Type any other comments here"></textarea></a></th><br>
+                    <th><a style="text-align: center;font-size:100px">Any other comments : <br/><input type="text" class="textbox" name="Text1" cols="60" rows="4" placeholder="Type any other comments here"/></a></th><br>
             <br/><br/><br/><br/><br/><br/>
                     <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
                     <br/><br/> 
@@ -196,41 +211,39 @@
                 <form>
                     
                     <p>Please indicate which training courses interest you :</p>
-                    <label for="subscribe">- Safepass</label>
-                    <input type="checkbox" id="subscribe" name="subscribe" value="newsletter">
+                    <label for="Safepass">- Safepass</label>
+                    <input type="checkbox" id="Safepass" name="Safepass" value="Safepass">
                     <br>
-                    <label for="subscribe1">- Other Construction Courses</label>
-                    <input type="checkbox" id="subscribe1" name="subscribe" value="newsletter">
+                    <label for="ConstructionCourses">- Other Construction Courses</label>
+                    <input type="checkbox" id="ConstructionCourses" name="ConstructionCourses" value="ConstructionCourses ">
                     <br>
-                    <label for="subscribe2">- Warehouse Courses</label>
-                    <input type="checkbox" id="subscribe2" name="subscribe" value="newsletter">
+                    <label for="WarehouseCourses">- Warehouse Courses</label>
+                    <input type="checkbox" id="WarehouseCourses" name="WarehouseCourses" value="WarehouseCourses">
                     <br>
-                    <label for="subscribe3">- Food and Hospitality Courses</label>
-                    <input type="checkbox" id="subscribe3" name="subscribe" value="newsletter">
+                    <label for="FoodandHospitalityCourses">- Food and Hospitality Courses</label>
+                    <input type="checkbox" id="FoodandHospitalityCourses" name="FoodandHospitalityCourses" value="FoodandHospitalityCourses">
                     <br>
-                    <label for="subscribe4">- First Aid</label>
-                    <input type="checkbox" id="subscribe4" name="subscribe" value="newsletter">
+                    <label for="FirstAid">- First Aid</label>
+                    <input type="checkbox" id="FirstAid" name="FirstAid" value="FirstAid">
                     <br>
-                    <label for="subscribe5">- Career Planning and Preparation</label>
-                    <input type="checkbox" id="subscribe5" name="subscribe" value="newsletter">
+                    <label for="CareerPlanningandPreparation">- Career Planning and Preparation</label>
+                    <input type="checkbox" id="CareerPlanningandPreparation" name="CareerPlanningandPreparation" value="CareerPlanningandPreparation">
                     <br>
-                    <label for="subscribe6">- Personal Development Courses</label>
-                    <input type="checkbox" id="subscribe6" name="subscribe" value="newsletter">
+                    <label for="PersonalDevelopmentCourses">- Personal Development Courses</label>
+                    <input type="checkbox" id="PersonalDevelopmentCourses" name="PersonalDevelopmentCourses" value="PersonalDevelopmentCourses">
                 </form>
-            <br/><div> <button style="font-size : 120px; width: 700px; height: 300px;"  id="submitButton" onclick="submit()">SUBMIT</button></div>
+            <br/><span> <button style="font-size : 120px; width: 700px; height: 300px;"  id="doSubmitButton" onclick="doCreateFeedback(this)">SUBMIT</button></span>
             <br/><br/>
 
-            <a style="text-align: center;font-size:100px"><strong>Thank you for completing this form. </strong></a>
+            <!--<a style="text-align: center;font-size:100px"><strong>Thank you for completing this form. </strong></a>
             <br><br/>
             <hr>
-    <div id='submitForm' style="display: none">
-        <h2><span Name="submitLabel">Submit</h2>
         <input type="hidden" name="id"/>
         Your Name <input type="text" name="student_name" /> <br/>
         Date <input type="date" name="date"/> <br/>
         Course Name <input type="text" name="course_name"/> <br/>
-        <!--Years in Office <input type="number" name="years"/> <br/>-->
-        <span><button id="doSubmitButton" onclick="doSubmit()">SUBMIT</button></span>
+        Years in Office <input type="number" name="years"/> <br/>
+        <span><button id="doSubmitButton" onclick="doCreateFeedback()">SUBMIT</button></span>-->
 </div>
 <!--<img src="Simon.jpg" alt="Cork Simon logo" width="1400" height="1400"><br/><p></p>-->
 </body>
@@ -275,17 +288,136 @@
         var resident = getResidentFromRow(rowElement)
         populateFormWithResident(resident)
     }
-    function doCreateFeedback(){
-            var form = document.getElementById('createUpdateForm')
+    function doCreateFeedback(doSubmitButton){
+            var form = document.getElementById('feedbackForm')
     
             var feedback = {}
            
-            resident.id = form.querySelector('input[name="id"]').value
-            resident.name = form.querySelector('input[name="student_name"]').value
-            resident.age = form.querySelector('input[name="date"]').value
-            resident.ppsn = form.querySelector('input[name="course_name"]').value
+            feedback.id = form.querySelector('input[name="id"]').value
+            feedback.name = form.querySelector('input[name="student_name"]').value
+            //feedback.happy = form.querySelector('input:radio[name="Happy"]:checked').val()
+            //feedback.happy = form.querySelector('input[name="Happy"]').value
+            //print (feedback.happy)
+            //if (form.querySelector("Happy").checked)
+                //{feedback.happy = form.getElementsByTagName("Happy").value}
+            //if (form.querySelector('input[name="Happy"]').checked){
+                feedback.happy = form.querySelector('input[name="Happy"]:checked').value
+            //}
+            //else{   
+            //    feedback.happy = "Blank"
+            //}
+            //feedback.happy = request.getParameter("Happy")
+            
+            //if (form.querySelector('input[name="Status1"]').checked){
+            //if (form.getElementsByTagName("Status1").checked){
+                feedback.overall = form.querySelector('input[name="Status1"]:checked').value
+            //}
+            //else{   
+            //    feedback.overall = "Blank"
+            //}
+            //feedback.venue = form.querySelector('input:radio[name="Status2"]:checked').val()
+            //if (form.querySelector('input[name="Status2"]').checked) {
+                feedback.venue = form.querySelector('input[name="Status2"]:checked').value
+            //}
+            //else{   
+            //    feedback.venue = "Blank"
+            //}
+            //feedback.tutor = form.querySelector('input:radio[name="Status3"]:checked').val()
+            //if (form.querySelector('input[name="Status3"]').checked){
+                feedback.tutor = form.querySelector('input[name="Status3"]:checked').value
+            //}
+            //else{   
+            //    feedback.tutor = "Blank"
+            //}
+            //feedback.materials = form.querySelector('input:radio[name="Status4"]:checked').val()
+            //if (form.querySelector('input[name="Status4"]').checked){
+                feedback.materials = form.querySelector('input[name="Status4"]:checked').value
+            //}
+            //else{   
+            //    feedback.materials = "Blank"
+            //}
+            //feedback.admin = form.querySelector('input:radio[name="Status5"]:checked').val()
+            //if (form.querySelector('input[name="Status5"]').checked){
+                feedback.admin = form.querySelector('input[name="Status5"]:checked').value
+            //}
+            //else{   
+            //    feedback.admin = "Blank"
+            //}
+            //feedback.feedback_tutor = form.querySelector('input:radio[name="Status6"]:checked').val()
+            //if (form.querySelector('input[name="Status6"]').checked){
+                feedback.feedback_tutor = form.querySelector('input[name="Status6"]:checked').value
+            //}
+            //else{   
+            //    feedback.feedback_tutor = "Blank"
+            //}
+            feedback.anycomments = form.querySelector('input[name="Text1"]').value
+            //if (form.querySelector('input[name="Text1"]').value){
+            //    feedback.anycomments = form.querySelector('input[name="Text1"]').value
+            //}
+            //else{   
+            //    feedback.anycomments = "Blank"
+            //}
+            feedback.courses = form.querySelector('input[id="Safepass"]').value
+            //print(feedback.courses)
+            if (form.querySelector('input[id="Safepass"]').checked){
+                feedback.courses = form.querySelector('input[id="Safepass"]').value
+            }
+            else{   
+                feedback.courses = ""
+            }
+            feedback.courses1 = form.querySelector('input[id="ConstructionCourses"]').value
+            //print(feedback.courses1)
+            if (form.querySelector('input[id="ConstructionCourses"]').checked){
+                //feedback.courses1 = form.querySelector('input[id="Construction"]').value
+                feedback.courses1 = form.querySelector('input[id="ConstructionCourses"]').value
+                //print(feedback.courses1)
+            }
+            else{   
+                feedback.courses1 = ""
+            }
+            feedback.courses2 = form.querySelector('input[id="WarehouseCourses"]').value
+            if (form.querySelector('input[id="WarehouseCourses"]').checked){
+                feedback.courses2 = form.querySelector('input[id="WarehouseCourses"]').value
+            }
+            else{   
+                feedback.courses2 = ""
+            }
+            feedback.courses3 = form.querySelector('input[id="FoodandHospitalityCourses"]').value
+            if (form.querySelector('input[id="FoodandHospitalityCourses"]').checked){
+                feedback.courses3 = form.querySelector('input[id="FoodandHospitalityCourses"]').value
+            }
+            else{   
+                feedback.courses3 = ""
+            }
+            feedback.courses4 = form.querySelector('input[id="FirstAid"]').value
+            if (form.querySelector('input[id="FirstAid"]').checked){
+                feedback.courses4 = form.querySelector('input[id="FirstAid"]').value
+            }
+            else{   
+                feedback.courses4 = ""
+            }
+            feedback.courses5 = form.querySelector('input[id="CareerPlanningandPreparation"]').value
+            if (form.querySelector('input[id="CareerPlanningandPreparation"]').checked){
+                feedback.courses5 = form.querySelector('input[id="CareerPlanningandPreparation"]').value
+            }
+            else{   
+                feedback.courses5 = ""
+            }
+            feedback.courses6 = form.querySelector('input[id="PersonalDevelopmentCourses"]').value
+            if (form.querySelector('input[id="PersonalDevelopmentCourses"]').checked){
+                feedback.courses6 = form.querySelector('input[id="PersonalDevelopmentCourses"]').value
+            }
+            else{   
+                feedback.courses6 = ""
+            }
+            
             console.log(JSON.stringify(feedback))
-            createResidentAjax(feedback)
+            //print(feedback)
+            createFeedbackAjax(feedback)
+            doSubmitButton.disabled = true
+            alert("Thank you for completing this form.")
+            //const message = document.getElementById("message");
+            //message.innerText = "This is the inserted message";
         }
     function doCreateRes(){
             var form = document.getElementById('createUpdateForm')
@@ -337,18 +469,18 @@
     }
     
     function addFeedbackToTable(feedback){
-        var tableElement = document.getElementById('feedbackTable')
+        var tableElement = document.getElementById('feedbackForm')
         var rowElement = tableElement.insertRow(-1)
         rowElement.setAttribute('id',feedback.id)
         var cell1 = rowElement.insertCell(0);
         cell1.innerHTML = feedback.id
         var cell2 = rowElement.insertCell(1);
         cell2.innerHTML = feedback.student_name
-        var cell3 = rowElement.insertCell(2);
-        cell3.innerHTML = resident.date
-        var cell4 = rowElement.insertCell(3);
-        cell4.innerHTML = resident.course_name
-        var cell5 = rowElement.insertCell(4);
+        //var cell3 = rowElement.insertCell(2);
+        //cell3.innerHTML = resident.date
+        //var cell4 = rowElement.insertCell(3);
+        //cell4.innerHTML = resident.course_name
+        //var cell5 = rowElement.insertCell(4);
         cell5.innerHTML = '<button onclick="showUpdateRes(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
         cell6.innerHTML = '<button onclick=doDeleteRes(this)>Delete</button>'    
@@ -361,6 +493,15 @@
         form.querySelector('input[name="name"]').value=''
         form.querySelector('input[name="age"]').value=''
         form.querySelector('input[name="ppsn"]').value=''
+}
+
+function clearFeedbackForm(){
+        var form = document.getElementById('createUpdateForm')
+    
+        form.querySelector('input[name="id"]').value=''
+        //form.querySelector('input[name="name"]').value=''
+        //form.querySelector('input[name="age"]').value=''
+        //form.querySelector('input[name="ppsn"]').value=''
 }
 
 function clearFeedbackForm(){
@@ -395,8 +536,15 @@ function getFeedbackFromRow(rowElement){
 function setResidentInRow(rowElement, resident){
     rowElement.cells[0].firstChild.textContent= resident.id  
     rowElement.cells[1].firstChild.textContent= resident.name 
-    rowElement.cells[2].firstChild.textContent= resident.age
-    rowElement.cells[3].firstChild.textContent= resident.ppsn
+    rowElement.cells[2].firstChild.textContent= resident.happy
+    rowElement.cells[3].firstChild.textContent= resident.overall
+    rowElement.cells[4].firstChild.textContent= resident.venue
+    rowElement.cells[5].firstChild.textContent= resident.tutor
+    rowElement.cells[6].firstChild.textContent= resident.materials
+    rowElement.cells[7].firstChild.textContent= resident.admin
+    rowElement.cells[8].firstChild.textContent= resident.feedback_tutor
+    rowElement.cells[9].firstChild.textContent= resident.anycomments
+    rowElement.cells[10].firstChild.textContent= resident.courses
 }
    
 function populateFormWithResident(resident){
@@ -405,8 +553,15 @@ function populateFormWithResident(resident){
 
     form.querySelector('input[name="id"]').value = resident.id
     form.querySelector('input[name="name"]').value = resident.name
-    form.querySelector('input[name="age"]').value = resident.age
-    form.querySelector('input[name="ppsn"]').value = resident.ppsn
+    form.querySelector('input[name="happy"]').value = resident.happy
+    form.querySelector('input[name="overall"]').value = resident.overall
+    form.querySelector('input[name="venue"]').value = resident.venue
+    form.querySelector('input[name="tutor"]').value = resident.tutor
+    form.querySelector('input[name="materials"]').value = resident.materials
+    form.querySelector('input[name="admin"]').value = resident.admin
+    form.querySelector('input[name="feedback_tutor"]').value = resident.feedback_tutor
+    form.querySelector('input[name="anycomments"]').value = resident.anycomments
+    form.querySelector('input[name="courses"]').value = resident.courses
     return resident
 }
 
@@ -423,7 +578,7 @@ function getResidentFromForm(){
 
 function getAllResAjax(){
     $.ajax({
-        "url": "/resident",
+        "url": "/training",
         "method":"GET",
         "data":"",
         "dataType": "JSON",
@@ -461,21 +616,21 @@ function printResidentAjax(){
 
 }
 
-function createResidentAjax(resident){
+function createFeedbackAjax(feedback){
     //var project = {"id":1, "name":"E & T","staff":9}
-    console.log(JSON.stringify(resident));
+    console.log(JSON.stringify(feedback));
     $.ajax({
-        "url": "/resident",
+        "url": "/training",
         "method":"POST",
-        "data":JSON.stringify(resident),
+        "data":JSON.stringify(feedback),
         "dataType": "JSON",
         contentType: "application/json; charset=utf-8",
         "success":function(result){
             //console.log(result);
-            resident.id = result.id
-            addResidentToTable(resident)
-            clearResForm()
-            showViewAllRes()
+            feedback.id = result.id
+            addFeedbackToTable(feedback)
+            //clearFeedbackForm()
+            //showViewAllTraining()
         },
         "error":function(xhr,status,error){
             console.log("error: "+status+" msg:"+error);
