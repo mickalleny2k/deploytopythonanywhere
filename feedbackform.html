@@ -112,7 +112,7 @@
                 Good <input type="radio" name="Status1" value="Good" id="Good">
                 Excellent <input type="radio" name="Status1" value="Excellent" id="Excellent"></a><br>
             <br/>
-            <th><a style="text-align: center;font-size:70px" title="Comment">Write a comment (optional) : <textarea name="Text1" rows="2" placeholder="Type a comment here about the course"></textarea></a></th>
+            <!--<th><a style="text-align: center;font-size:70px" title="Comment">Write a comment (optional) : <textarea name="Text1" rows="2" placeholder="Type a comment here about the course"></textarea></a></th>-->
             <br/><br/>
             <br><br>
             <th><a style="text-align: center;font-size:70px"><strong>Let us know your thoughts on the venue</strong > </a></th><br>  
@@ -163,9 +163,10 @@
                         Good <input type="radio" name="Status6" value="Good" id="Good">
                         Excellent <input type="radio" name="Status6" value="Excellent" id="Excellent"><br>
                     <br/>
-                    <th><a style="text-align: center;font-size:100px">Any other comments : <br/><input type="text" class="textbox" name="Text1" cols="60" rows="4" placeholder="Type any other comments here"/></a></th><br>
+                    <th>Any other comments : <br/><textarea name="Text1" cols="60" rows="4" placeholder="Type any other comments here"></textarea></th>
+                    <!--<th><a style="text-align: center;font-size:100px">Any other comments : <br/><input type="text" style="height:200px;font-size:14pt;" class="textbox" name="Text1" cols="60" rows="4" placeholder="Type any other comments here"/></a></th><br>
             <br/><br/><br/><br/><br/><br/>
-                    <!--<th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
+                    <th><a style="font-size:50px" title="Comment">Write a comment : <input type="text" name="comment" /></a></th>
                     <br/><br/> 
                     <br><br>
                 <th><a style="font-size:70px"> Are there any areas that you felt should have been covered in more detail by the course ?<br/><textarea name="Text1" cols="40" rows="2"></textarea></a></th>
@@ -311,6 +312,7 @@
             //if (form.querySelector('input[name="Status1"]').checked){
             //if (form.getElementsByTagName("Status1").checked){
                 feedback.overall = form.querySelector('input[name="Status1"]:checked').value
+
             //}
             //else{   
             //    feedback.overall = "Blank"
@@ -350,7 +352,8 @@
             //else{   
             //    feedback.feedback_tutor = "Blank"
             //}
-            feedback.anycomments = form.querySelector('input[name="Text1"]').value
+            //feedback.anycomments = form.querySelector('input[name="Text1"]').value
+            feedback.anycomments = form.querySelector('textarea[name="Text1"]').value
             //if (form.querySelector('input[name="Text1"]').value){
             //    feedback.anycomments = form.querySelector('input[name="Text1"]').value
             //}
@@ -538,12 +541,19 @@ function getFeedbackFromRow(rowElement){
     feedback.id  = rowElement.getAttribute('id')
     feedback.student_name = rowElement.cells[1].firstChild.textContent
     //project.staff = rowElement.cells[2].firstChild.textContent
-    feedback.date = parseInt(rowElement.cells[2].firstChild.textContent,10)
-    feedback.course_name = rowElement.cells[3].firstChild.textContent
+    feedback.happy = parseInt(rowElement.cells[2].firstChild.textContent,10)
+    feedback.overall = rowElement.cells[3].firstChild.textContent
+    feedback.venue = rowElement.cells[4].firstChild.textContent
+    feedback.tutor = rowElement.cells[5].firstChild.textContent
+    feedback.materials = rowElement.cells[6].firstChild.textContent
+    feedback.admin = rowElement.cells[7].firstChild.textContent
+    feedback.feedback_tutor = rowElement.cells[8].firstChild.textContent
+    feedback.anycomments = rowElement.cells[9].firstChild.textContent
+    feedback.courses = rowElement.cells[10].firstChild.textContent
     return feedback
 }
 
-function setResidentInRow(rowElement, resident){
+function setFeedbackInRow(rowElement, resident){
     rowElement.cells[0].firstChild.textContent= resident.id  
     rowElement.cells[1].firstChild.textContent= resident.name 
     rowElement.cells[2].firstChild.textContent= resident.happy
@@ -557,7 +567,7 @@ function setResidentInRow(rowElement, resident){
     rowElement.cells[10].firstChild.textContent= resident.courses
 }
    
-function populateFormWithResident(resident){
+function populateFormWithFeedback(resident){
     var form = document.getElementById('createUpdateForm')
     form.querySelector('input[name="id"]').disabled = true
 
